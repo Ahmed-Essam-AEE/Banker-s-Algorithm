@@ -48,6 +48,25 @@ public class Main {
             }
         }
     }
+    public static void request( int p ,int m, int []resources, int [][]need  )
+    {
+        for(int i=0 ; i<m; i++){
+            need[p][i]+=resources[i];
+            // check for safe state.
+
+        }
+    }
+    public static void release( int p ,int m, int []resources, int [][]alloc  )
+    {
+        for(int i=0 ; i<m; i++){
+            if(resources[i]<=alloc[p][i])
+            {
+                alloc[p][i]-=resources[i];
+            }
+            // check for safe state.
+
+        }
+    }
     public static void main(String[] args) {
 
         int n=sc.nextInt() , m=sc.nextInt();                  // n is the number of processes and m is number of resources.
