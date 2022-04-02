@@ -62,15 +62,14 @@ public class Main {
 
         }
     }
-    public static void release( int p ,int m, int []resources, int [][]alloc  )
+    public static void release( int p ,int m, int []resources, int [][]alloc , int [][] available  )
     {
         for(int i=0 ; i<m; i++){
             if(resources[i]<=alloc[p][i])
             {
                 alloc[p][i]-=resources[i];
+                available[p][i]+=alloc[p][i];
             }
-            // check for safe state.
-
         }
     }
     public static boolean safeState(int[][] x, int[][] y, int[] z) {
