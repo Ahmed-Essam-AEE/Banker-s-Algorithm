@@ -1,11 +1,10 @@
 package pk;
 
 import java.util.Scanner;
-import java.util.*;
-import java.lang.*;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
+    static Scanner input = new Scanner(System.in);
 
     public static void fillInitialRes(int m, int[] available) {
         for (int i = 0; i < m; i++) {
@@ -117,9 +116,10 @@ public class Main {
         return true;
     }
 
-    public static void main(String[] args) {
 
-        int n = sc.nextInt(), m = sc.nextInt();                  // n is the number of processes and m is number of resources.
+    public static void main(String[] args) {
+        System.out.println("Enter the number of processes and the number of resources:");
+        int n = sc.nextInt(), m = sc.nextInt();             // n is the number of processes and m is number of resources.
         int[] available = new int[m];                       //the available amount of each resource.
         int[][] maximum = new int[n][m];                    //the maximum demand of each process.
         int[][] allocation = new int[n][m];                 //the amount currently allocated to each process.
@@ -129,5 +129,22 @@ public class Main {
         fillMax(n, m, maximum);
         fillNeed(n, m, need, maximum, allocation);
         fillAvaRes(available, allocation);
+        String in="";
+        while(!in.equals("Quit")){
+            in = input.nextLine();
+            if(in.charAt(1)=='Q'){
+                //RQ <process#> <r1> <r2> <r3>
+            }
+            else if(in.charAt(1)=='L'){
+                //RL <process#> <r1> <r2> <r3>
+
+            }
+            else if(in.charAt(0)=='Q'){
+                break;
+            }
+            else{
+                //Recover
+            }
+        }
     }
 }
