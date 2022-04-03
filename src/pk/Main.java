@@ -67,8 +67,8 @@ public class Main {
         for (int i = 0;i<3;i++) System.out.println(resources[i]);
         for (int i = 0; i < m; i++) {
             if (resources[i] <= alloc[p][i]) {
-                alloc[p][i] -= resources[i];
                 available[i] += alloc[p][i];
+                alloc[p][i] -= resources[i];
             }
         }
     }
