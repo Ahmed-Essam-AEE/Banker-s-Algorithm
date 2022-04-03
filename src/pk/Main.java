@@ -139,18 +139,18 @@ public class Main {
             in = input.nextLine();
             if(in.charAt(1)=='Q'){
                 //RQ <process#> <r1> <r2> <r3>
-                int[] resources = new int[3];
+                int[] resources = new int[m];
                 String[] splitinput = in.split(" ");
                 int p = Integer.parseInt(splitinput[1]);
-                for(int i = 0 ; i <3;i++) resources[i] = Integer.parseInt(splitinput[i+2]);
+                for(int i = 0 ; i <m;i++) resources[i] = Integer.parseInt(splitinput[i+2]);
                 request(p,m,resources,need);
             }
             else if(in.charAt(1)=='L'){
                 //RL <process#> <r1> <r2> <r3>
-                int[] resources = new int[3];
+                int[] resources = new int[m];
                 String[] splitinput = in.split(" ");
                 int p = Integer.parseInt(splitinput[1]);
-                for(int i = 0 ; i <3;i++) resources[i] = Integer.parseInt(splitinput[i+2]);
+                for(int i = 0 ; i <m;i++) resources[i] = Integer.parseInt(splitinput[i+2]);
                 release(p,m,resources,allocation,available);
             }
             else{
