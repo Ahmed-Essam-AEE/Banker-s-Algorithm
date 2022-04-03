@@ -129,6 +129,7 @@ public class Main {
         fillMax(n, m, maximum);
         fillNeed(n, m, need, maximum, allocation);
         fillAvaRes(available, allocation);
+        System.out.println("choose to request, release, recover, or quit:");
         String in="";
         while(!in.equals("Quit")){
             in = input.nextLine();
@@ -138,9 +139,6 @@ public class Main {
             else if(in.charAt(1)=='L'){
                 //RL <process#> <r1> <r2> <r3>
 
-            }
-            else if(in.charAt(0)=='Q'){
-                break;
             }
             else{
                 //Recover
