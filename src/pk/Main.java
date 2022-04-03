@@ -53,6 +53,8 @@ public class Main {
     }
 
     public static void request(int p, int m, int[] resources, int[][] need) {
+        System.out.println("Request");
+        for (int i = 0;i<3;i++) System.out.println(resources[i]);
         for (int i = 0; i < m; i++) {
             need[p][i] += resources[i];
             // check for safe state.
@@ -60,11 +62,13 @@ public class Main {
         }
     }
 
-    public static void release(int p, int m, int[] resources, int[][] alloc, int[][] available) {
+    public static void release(int p, int m, int[] resources, int[][] alloc, int[] available) {
+        System.out.println("Release");
+        for (int i = 0;i<3;i++) System.out.println(resources[i]);
         for (int i = 0; i < m; i++) {
             if (resources[i] <= alloc[p][i]) {
                 alloc[p][i] -= resources[i];
-                available[p][i] += alloc[p][i];
+                available[i] += alloc[p][i];
             }
         }
     }
@@ -135,10 +139,19 @@ public class Main {
             in = input.nextLine();
             if(in.charAt(1)=='Q'){
                 //RQ <process#> <r1> <r2> <r3>
+                int[] resources = new int[3];
+                String[] splitinput = in.split(" ");
+                int p = Integer.parseInt(splitinput[1]);
+                for(int i = 0 ; i <3;i++) resources[i] = Integer.parseInt(splitinput[i+2]);
+                request(p,m,resources,need);
             }
             else if(in.charAt(1)=='L'){
                 //RL <process#> <r1> <r2> <r3>
-
+                int[] resources = new int[3];
+                String[] splitinput = in.split(" ");
+                int p = Integer.parseInt(splitinput[1]);
+                for(int i = 0 ; i <3;i++) resources[i] = Integer.parseInt(splitinput[i+2]);
+                release(p,m,resources,allocation,available);
             }
             else{
                 //Recover
