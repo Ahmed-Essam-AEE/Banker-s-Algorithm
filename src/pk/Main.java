@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
     static Scanner sc = new Scanner(System.in);
     static Scanner input = new Scanner(System.in);
+    static int[] deadlockedProcess;
 
     public static void fillInitialRes(int m, int[] available) {
         for (int i = 0; i < m; i++) {
@@ -111,12 +112,24 @@ public class Main {
                 }
 
             }
-            if (remaining == prevRemaining)
+            if (remaining == prevRemaining) {
+                System.out.println("Unsafe/Deadlock State");
+                deadlockedProcess = new int[remaining];
+                int idx =0;
+                for(int i =0; i< finished.length;i++){
+                    if(!finished[i]){
+                        System.out.println("P" + i+" In deadlock");
+                        deadlockedProcess[idx]=i;
+                        idx++;
+                    }
+                }
                 return false;
+            }
             if (remaining == 0)
                 break;
             prevRemaining = remaining;
         }
+        System.out.println("Safe state");
         return true;
     }
 
