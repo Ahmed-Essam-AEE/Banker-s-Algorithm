@@ -64,14 +64,36 @@ public class Main {
     }
 
     public static void release(int p, int m, int[] resources, int[][] alloc, int[] available) {
-        System.out.println("Release");
-        for (int i = 0;i<3;i++) System.out.println(resources[i]);
+        System.out.print("Release P"+(p+1));
+        for (int i = 0;i<m;i++) System.out.print(resources[i]);
         for (int i = 0; i < m; i++) {
             if (resources[i] <= alloc[p][i]) {
                 available[i] += alloc[p][i];
                 alloc[p][i] -= resources[i];
             }
         }
+    }
+    public static boolean compareTwoArrays(int n , int [] arr1 ,  int [] arr2 ){
+        for(int i=0 ; i<n ; i++)
+        {
+            if(arr1[i]<=arr2[i]){
+                continue;
+            }else return false;
+        }
+        return true;
+    }
+    public static void banker(int n, int m, int[][] max, int[][] alloc, int[] available , int [][] need ){
+        computeNeed(n , m , need , max , alloc);
+        Set<Integer> s = null;
+        for (int i = 0; i < n; i++) {
+                if(s.contains(i) &&  compareTwoArrays(m ,need[i] , available))
+                {
+                    release(i ,m , alloc[i] , alloc , available );
+                    s.add(i);
+                    i=0;
+                }
+        }
+
     }
 
     public static boolean safeState(int[][] x, int[][] y, int[] z) {
