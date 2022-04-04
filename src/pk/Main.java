@@ -55,7 +55,7 @@ public class Main {
 
     public static void request(int p, int m, int[] resources, int[][] need) {
         System.out.println("Request");
-        for (int i = 0;i<3;i++) System.out.println(resources[i]);
+        for (int i = 0;i<m;i++) System.out.println(resources[i]);
         for (int i = 0; i < m; i++) {
             need[p][i] += resources[i];
             // check for safe state.
@@ -65,7 +65,7 @@ public class Main {
 
     public static void release(int p, int m, int[] resources, int[][] alloc, int[] available) {
         System.out.println("Release");
-        for (int i = 0;i<3;i++) System.out.println(resources[i]);
+        for (int i = 0;i<m;i++) System.out.println(resources[i]);
         for (int i = 0; i < m; i++) {
             if (resources[i] <= alloc[p][i]) {
                 available[i] += alloc[p][i];
