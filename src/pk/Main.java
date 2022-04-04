@@ -7,6 +7,33 @@ public class Main {
     static Scanner input = new Scanner(System.in);
     static int[] deadlockedProcess;
 
+    public static void printInfo(int[][] alloc, int[][] need, int[]available, boolean isBanker){
+        System.out.println("===Allocated Matrix===");
+        for (int i =0; i< alloc.length;i++){
+            System.out.print("P" + (i+1) +" ");
+            for (int j =0; j<alloc[i].length;j++)
+                System.out.print(alloc[i][j]+" ");
+            System.out.println();
+        }
+        if(isBanker){
+            System.out.println("===Need Matrix===");
+
+        }else{
+            System.out.println("===Requests Matrix===");
+        }
+        for (int i =0; i< need.length;i++){
+            System.out.print("P" + (i+1) +" ");
+            for (int j =0; j<need[i].length;j++)
+                System.out.print(need[i][j]+" ");
+            System.out.println();
+        }
+        System.out.println("===Available resources===");
+        for (int j =0; j<available.length;j++)
+            System.out.print(available[j]+" ");
+        System.out.println();
+        System.out.println();
+    }
+
     public static void fillInitialRes(int m, int[] available) {
         for (int i = 0; i < m; i++) {
             System.out.print("Enter available resources for R" + (i + 1) + ": ");
