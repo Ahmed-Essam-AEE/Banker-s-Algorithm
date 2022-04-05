@@ -72,7 +72,7 @@ public class Main {
         }
     }
 
-    public static void fillNeed(int n, int m, int[][] need, int[][] maxNeed, int[][] allocated) {
+   public static void computeNeed(int n, int m, int[][] need, int[][] maxNeed, int[][] allocated) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 need[i][j] = maxNeed[i][j] - allocated[i][j];
@@ -82,7 +82,7 @@ public class Main {
 
     public static void request(int p, int m, int[] resources, int[][] need) {
         System.out.println("Request");
-        for (int i = 0;i<3;i++) System.out.println(resources[i]);
+        for (int i = 0;i<m;i++) System.out.println(resources[i]);
         for (int i = 0; i < m; i++) {
             need[p][i] += resources[i];
             // check for safe state.
@@ -109,8 +109,9 @@ public class Main {
         }
         return true;
     }
-    public static void banker(int n, int m, int[][] max, int[][] alloc, int[] available , int [][] need ){
+    public static void banker(int n, int m, int p, int[][] max, int[][] alloc, int[] available , int [][] need , int [] requestedResources){
         computeNeed(n , m , need , max , alloc);
+        /*
         Set<Integer> s = null;
         for (int i = 0; i < n; i++) {
                 if(s.contains(i) &&  compareTwoArrays(m ,need[i] , available))
@@ -119,6 +120,35 @@ public class Main {
                     s.add(i);
                     i=0;
                 }
+        }*/
+        if(compareTwoArrays( m , requestedResources , need[p]))
+        {
+            if(compareTwoArrays(m , requestedResources , available))
+            {
+                for(int j=0; j<m ; j++)
+                {
+                    alloc[p][j]+=requestedResources[j];
+                    available[j]-=requestedResources[j];
+                    need[p][j]-=requestedResources[j];
+                }
+                System.out.println("Request is being reviewed(check for safe state).");
+                if(!safeState(alloc , need , available))
+                {
+                    System.out.println("Request lead to unsafe state).");
+                    for(int j=0; j<m ; j++)
+                    {
+                        alloc[p][j]-=requestedResources[j];
+                        available[j]+=requestedResources[j];
+                        need[p][j]+=requestedResources[j];
+                    }
+                } else{ System.out.println("System is in safe state.");}
+            }
+            else {
+                System.out.println("Unable to accept this request(not available).");
+            }
+        }
+        else {
+            System.out.println("Requested resources is more than expected needed resources.");
         }
 
     }
