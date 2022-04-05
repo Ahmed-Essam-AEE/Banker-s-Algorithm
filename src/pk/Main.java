@@ -63,6 +63,9 @@ public class Main {
         }
     }
 
+    private static void fillNeed(int n, int m, int[][] need, int[][] maximum, int[][] allocation) {
+    }
+
     public static void fillAlloc(int n, int m, int[][] alloc) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
@@ -95,7 +98,7 @@ public class Main {
         for (int i = 0;i<m;i++) System.out.print(resources[i]);
         for (int i = 0; i < m; i++) {
             if (resources[i] <= alloc[p][i]) {
-                available[i] += alloc[p][i];
+                available[i] += resources[i];
                 alloc[p][i] -= resources[i];
             }
         }
