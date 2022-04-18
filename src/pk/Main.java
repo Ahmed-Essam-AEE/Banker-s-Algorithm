@@ -301,7 +301,7 @@ public class Main {
             int p = sc.nextInt();
             System.out.print("Requested Resources: ");
             for (int j = 0; j < m; j++) {
-                req[i] = sc.nextInt();
+                req[j] = sc.nextInt();
             }
             banker(p, req);
             printInfo(need, true);
